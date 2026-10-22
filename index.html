@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LetsLearn: Teach, learn & swap skills near you</title>
+  <meta name="description" content="A free map of people near you who want to teach, learn or swap skills. Launching in Hong Kong and London." />
+  <meta property="og:title" content="LetsLearn: Teach, learn & swap skills near you" />
+  <meta property="og:description" content="Swap guitar for Cantonese, Python for photography. Free, launching in Hong Kong & London." />
+  <meta property="og:image" content="og.png" />
+  <meta name="theme-color" content="#16C47F" />
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #16c47f; --green-dark: #0e9f66; --green-light: #2bd98f; --green-soft: #e3f9ef;
+      --blue: #1cb0f6; --purple: #a560f2; --orange: #ff9600;
+      --ink: #1f2933; --muted: #6b7785; --line: #e2e8ec; --bg: #ffffff; --panel: #f2f5f7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #f1f5f8; --muted: #9aa6b2; --line: #2c3944; --bg: #121a20; --panel: #1c262e; --green-soft: #123a2a; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 600; color: var(--ink); background: var(--bg); line-height: 1.5; }
+    a { color: var(--green-dark); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 24px; color: var(--green-dark); text-decoration: none; }
+    .brand img { width: 40px; height: 40px; border-radius: 10px; }
+    .lang button { font: inherit; font-weight: 800; border: 2px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 12px; padding: 6px 12px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { border-color: var(--green); color: var(--green-dark); background: var(--green-soft); }
+
+    .hero { background: linear-gradient(135deg, var(--green-light), var(--green-dark)); color: #fff; border-radius: 32px; padding: 48px 28px; display: grid; gap: 32px; grid-template-columns: 1.1fr 0.9fr; align-items: center; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: rgba(255,255,255,.12); right: -120px; top: -140px; }
+    .hero h1 { font-weight: 900; font-size: clamp(34px, 6vw, 56px); line-height: 1.05; margin: 0 0 14px; }
+    .hero p { font-size: 19px; margin: 0 0 22px; opacity: .95; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .pill { border-radius: 999px; padding: 4px 14px; font-weight: 800; color: #fff; }
+    .art { font-size: clamp(28px, 7vw, 64px); text-align: center; position: relative; z-index: 1; line-height: 1.3; white-space: nowrap; }
+
+    form { background: var(--bg); color: var(--ink); border-radius: 24px; padding: 22px; display: grid; gap: 12px; position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+    form h2 { margin: 0; font-weight: 900; font-size: 22px; }
+    label { font-weight: 800; font-size: 14px; display: grid; gap: 6px; }
+    input[type=email], select { font: inherit; font-weight: 700; padding: 12px 14px; border-radius: 16px; border: 2px solid var(--line); background: var(--panel); color: var(--ink); }
+    input:focus, select:focus { outline: none; border-color: var(--green); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; font-size: 14px; }
+    .check input { width: 20px; height: 20px; accent-color: var(--green); margin-top: 2px; }
+    .btn { font: inherit; font-weight: 900; text-transform: uppercase; letter-spacing: .8px; font-size: 15px; color: #fff; background: var(--green); border: 0; border-radius: 16px; padding: 14px; box-shadow: 0 4px 0 var(--green-dark); cursor: pointer; }
+    .btn:active { transform: translateY(4px); box-shadow: none; }
+    .btn[disabled] { opacity: .6; }
+    .note { font-size: 12px; color: var(--muted); margin: 0; }
+    .msg { font-weight: 800; margin: 0; }
+    .msg.ok { color: var(--green-dark); } .msg.err { color: #e03e3e; }
+    .hp { position: absolute; left: -9999px; }
+
+    section { padding: 56px 0 8px; }
+    section h2 { font-weight: 900; font-size: 32px; margin: 0 0 24px; text-align: center; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card { border: 2px solid var(--line); border-radius: 20px; padding: 20px; background: var(--bg); }
+    .card .emoji { font-size: 40px; }
+    .card h3 { margin: 6px 0; font-weight: 900; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); }
+    .num { width: 44px; height: 44px; border-radius: 50%; background: var(--green); color: #fff; font-weight: 900; font-size: 22px; display: grid; place-items: center; }
+    details { border: 2px solid var(--line); border-radius: 16px; padding: 14px 18px; margin-bottom: 10px; }
+    summary { font-weight: 800; cursor: pointer; }
+    footer { padding: 48px 0 40px; color: var(--muted); font-size: 14px; text-align: center; }
+    @media (max-width: 760px) { .hero { grid-template-columns: 1fr; padding: 32px 20px; } .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="./"><img src="logo.png" alt="" />LetsLearn</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh-Hant" aria-pressed="false">繁中</button>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div style="position:relative;z-index:1">
+        <h1 data-i18n="heroTitle">Teach, learn &amp; swap skills with people near you</h1>
+        <p data-i18n="heroSub">Find tutors, learners and skill swaps on a map. Free, launching soon in Hong Kong and London.</p>
+        <div class="pills">
+          <span class="pill" style="background:var(--blue)" data-i18n="pillTutors">🎓 Tutors</span>
+          <span class="pill" style="background:var(--purple)" data-i18n="pillLearners">🙋 Learners</span>
+          <span class="pill" style="background:var(--orange)" data-i18n="pillSwaps">🔁 Swaps</span>
+        </div>
+        <div class="art" aria-hidden="true">🗺️ 🎸 🗣️ 💻 🍳</div>
+      </div>
+
+      <form id="waitlist" novalidate>
+        <h2 data-i18n="formTitle">Join the waitlist 🚀</h2>
+        <label><span data-i18n="email">Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+        </label>
+        <div class="row">
+          <label><span data-i18n="city">City</span>
+            <select name="city">
+              <option value="HK" data-i18n="cityHK">Hong Kong</option>
+              <option value="LDN" data-i18n="cityLDN">London</option>
+              <option value="other" data-i18n="cityOther">Somewhere else</option>
+            </select>
+          </label>
+          <label><span data-i18n="role">I want to…</span>
+            <select name="role">
+              <option value="both" data-i18n="roleBoth">Teach &amp; learn</option>
+              <option value="teach" data-i18n="roleTeach">Teach</option>
+              <option value="learn" data-i18n="roleLearn">Learn</option>
+            </select>
+          </label>
+        </div>
+        <label class="check"><input type="checkbox" name="android_tester" />
+          <span data-i18n="tester">I have an Android phone and can help test before launch</span>
+        </label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button class="btn" type="submit" data-i18n="submit">Notify me</button>
+        <p class="msg" id="msg" role="status"></p>
+        <p class="note"><span data-i18n="privacyNote">We'll only email you about the LetsLearn launch. No spam. 18+ only.</span>
+          <a href="privacy.html" data-i18n="privacyLink">Privacy Policy</a></p>
+      </form>
+    </div>
+
+    <section>
+      <h2 data-i18n="howTitle">How it works</h2>
+      <div class="grid">
+        <div class="card"><div class="num">1</div><h3 data-i18n="how1t">Open the map</h3><p data-i18n="how1">See who nearby wants to teach, learn or swap skills.</p></div>
+        <div class="card"><div class="num">2</div><h3 data-i18n="how2t">Message them</h3><p data-i18n="how2">Chat in the app and propose a time to meet.</p></div>
+        <div class="card"><div class="num">3</div><h3 data-i18n="how3t">Meet &amp; learn</h3><p data-i18n="how3">Meet somewhere public, learn something new, leave a review.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="whyTitle">Why people love it</h2>
+      <div class="grid">
+        <div class="card"><div class="emoji">🔁</div><h3 data-i18n="f1t">Swap, don't pay</h3><p data-i18n="f1">Trade a skill you have for one you want. Or teach for free, or set your own rate.</p></div>
+        <div class="card"><div class="emoji">🗺️</div><h3 data-i18n="f2t">Right around the corner</h3><p data-i18n="f2">Find people a few minutes away, or learn online from anywhere.</p></div>
+        <div class="card"><div class="emoji">🔥</div><h3 data-i18n="f3t">Fun to keep going</h3><p data-i18n="f3">Weekly streaks, badges and celebrations make real-world learning stick.</p></div>
+        <div class="card"><div class="emoji">🛡️</div><h3 data-i18n="f4t">Safe by design</h3><p data-i18n="f4">Locations are always blurred, 18+ only, and you can report or block in one tap.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="faqTitle">FAQ</h2>
+      <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. LetsLearn is free to use. Tutors can choose to swap, teach for free, or agree their own rate with you directly.</p></details>
+      <details><summary data-i18n="q2">When does it launch?</summary><p data-i18n="a2">Very soon on Android (Google Play), with iPhone to follow. Join the waitlist and we'll email you on launch day.</p></details>
+      <details><summary data-i18n="q3">Where is it available?</summary><p data-i18n="a3">Hong Kong and London first. Online lessons work from anywhere.</p></details>
+      <details><summary data-i18n="q4">Is my location shared?</summary><p data-i18n="a4">Never exactly. Listing pins are moved 300–800 m at random, and your device location stays on your phone.</p></details>
+    </section>
+
+    <footer>
+      <p>© LetsLearn · <a href="mailto:letslearnhk@gmail.com">letslearnhk@gmail.com</a> · <a href="privacy.html" data-i18n="privacyLink">Privacy Policy</a> · <a href="terms.html" data-i18n="termsLink">Terms of Use</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Filled in by build.mjs from mobile/.env (the publishable key is designed to be public;
+    // row-level security only lets visitors add themselves to the waitlist).
+    const SUPABASE_URL = 'https://enxynipvdqjxivnhhcma.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ufnH4bPRypV4_tBXsbEylA_Y2xuxPEd';
+
+    const zh = {
+      heroTitle: '同身邊嘅人教、學、交換技能',
+      heroSub: '喺地圖上搵導師、學生同技能交換。完全免費，即將登陸香港及倫敦。',
+      pillTutors: '🎓 導師', pillLearners: '🙋 學生', pillSwaps: '🔁 交換',
+      formTitle: '登記候補名單 🚀', email: '電郵', city: '城市', cityHK: '香港', cityLDN: '倫敦', cityOther: '其他地方',
+      role: '我想…', roleBoth: '教同學', roleTeach: '教', roleLearn: '學',
+      tester: '我有 Android 手機，可以喺上架前幫手測試',
+      submit: '通知我', privacyNote: '我哋只會就 LetsLearn 上架電郵通知你，唔會亂發。只限 18 歲或以上。', privacyLink: '私隱政策', termsLink: '使用條款',
+      howTitle: '點運作', how1t: '打開地圖', how1: '睇吓附近邊個想教、想學或交換技能。', how2t: '傳訊息', how2: '喺 App 入面傾，提議見面時間。', how3t: '見面學習', how3: '喺公眾地方見面，學新嘢，完咗留評價。',
+      whyTitle: '點解大家鍾意', f1t: '交換，唔使俾錢', f1: '用你識嘅技能換你想學嘅。或者免費教，或者自訂收費。', f2t: '就喺你附近', f2: '搵幾分鐘路程外嘅人，或者網上隨時學。', f3t: '越學越有動力', f3: '每週連續紀錄、徽章同慶祝動畫，令學習更持久。', f4t: '安全設計', f4: '位置永遠模糊處理、只限 18 歲或以上，一按就可以檢舉或封鎖。',
+      faqTitle: '常見問題', q1: '真係免費？', a1: '係。LetsLearn 免費使用。導師可以選擇交換、免費教，或者同你直接傾收費。', q2: '幾時上架？', a2: '好快喺 Android（Google Play）推出，iPhone 版隨後。登記候補名單，上架當日會電郵通知你。', q3: '邊度可以用？', a3: '率先喺香港及倫敦推出。網上課堂任何地方都用得。', q4: '會唔會公開我嘅位置？', a4: '永遠唔會顯示準確位置。刊登嘅位置會隨機偏移 300–800 米，手機位置只會留喺你部手機。',
+      ok: '🎉 你已加入候補名單！上架時會通知你。', dup: '👍 你已經喺候補名單入面喇！', bad: '請輸入有效嘅電郵地址。', fail: '出咗少少問題，請再試一次。'
+    };
+    const en = {};
+    document.querySelectorAll('[data-i18n]').forEach((el) => { en[el.dataset.i18n] = el.textContent; });
+    Object.assign(en, {
+      ok: "🎉 You're on the list! We'll email you on launch day.",
+      dup: "👍 You're already on the list!",
+      bad: 'Please enter a valid email address.',
+      fail: 'Something went wrong. Please try again.'
+    });
+
+    let lang = 'en';
+    function setLang(next) {
+      lang = next;
+      const dict = next === 'zh-Hant' ? zh : en;
+      document.querySelectorAll('[data-i18n]').forEach((el) => { const v = dict[el.dataset.i18n]; if (v) el.textContent = v; });
+      document.documentElement.lang = next === 'zh-Hant' ? 'zh-Hant-HK' : 'en';
+      document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === next)));
+      try { localStorage.setItem('letslearn.lang', next); } catch (e) { /* storage unavailable */ }
+    }
+    document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    let saved = null;
+    try { saved = localStorage.getItem('letslearn.lang'); } catch (e) { /* storage unavailable */ }
+    const browserZh = (navigator.language || '').toLowerCase().startsWith('zh');
+    setLang(saved || (browserZh ? 'zh-Hant' : 'en'));
+
+    const form = document.getElementById('waitlist');
+    const msg = document.getElementById('msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const t = lang === 'zh-Hant' ? zh : en;
+      const data = new FormData(form);
+      if (data.get('website')) return; // bots fill the hidden field
+      const email = String(data.get('email') || '').trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = 'msg err'; msg.textContent = t.bad; return; }
+      const button = form.querySelector('button[type=submit]');
+      button.disabled = true;
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+          method: 'POST',
+          headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ email, city: data.get('city'), role: data.get('role'), lang, android_tester: data.get('android_tester') === 'on' }),
+        });
+        if (res.ok) { msg.className = 'msg ok'; msg.textContent = t.ok; form.reset(); }
+        else if (res.status === 409) { msg.className = 'msg ok'; msg.textContent = t.dup; }
+        else { msg.className = 'msg err'; msg.textContent = t.fail; }
+      } catch (err) {
+        msg.className = 'msg err'; msg.textContent = t.fail;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
