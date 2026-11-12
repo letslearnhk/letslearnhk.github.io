@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LetsLearn: Teach, learn & swap skills near you</title>
-  <meta name="description" content="A free map of people near you who want to teach, learn or swap skills. Launching in Hong Kong and London." />
-  <meta property="og:title" content="LetsLearn: Teach, learn & swap skills near you" />
-  <meta property="og:description" content="Swap guitar for Cantonese, Python for photography. Free, launching in Hong Kong & London." />
+  <title>LetsLearn: Find a tutor near you</title>
+  <meta name="description" content="A free app with a map of tutors near you: languages, music, coding, exam prep and more. Launching in Hong Kong and London." />
+  <meta property="og:title" content="LetsLearn: Find a tutor near you" />
+  <meta property="og:description" content="Piano, Cantonese, IELTS, Python... find a tutor a few minutes away. Free app, launching in Hong Kong & London." />
   <meta property="og:image" content="og.png" />
   <meta name="theme-color" content="#16C47F" />
   <link rel="icon" href="logo.png" />
@@ -82,8 +82,8 @@
 
     <div class="hero">
       <div style="position:relative;z-index:1">
-        <h1 data-i18n="heroTitle">Teach, learn &amp; swap skills with people near you</h1>
-        <p data-i18n="heroSub">Find tutors, learners and skill swaps on a map. Free, launching soon in Hong Kong and London.</p>
+        <h1 data-i18n="heroTitle">Find a tutor near you</h1>
+        <p data-i18n="heroSub">See tutors on a map, a few minutes from home, campus or work: languages, music, coding, exam prep and more. Free, launching soon in Hong Kong and London.</p>
         <div class="pills">
           <span class="pill" style="background:var(--blue)" data-i18n="pillTutors">🎓 Tutors</span>
           <span class="pill" style="background:var(--purple)" data-i18n="pillLearners">🙋 Learners</span>
@@ -127,7 +127,7 @@
     <section>
       <h2 data-i18n="howTitle">How it works</h2>
       <div class="grid">
-        <div class="card"><div class="num">1</div><h3 data-i18n="how1t">Open the map</h3><p data-i18n="how1">See who nearby wants to teach, learn or swap skills.</p></div>
+        <div class="card"><div class="num">1</div><h3 data-i18n="how1t">Open the map</h3><p data-i18n="how1">Pick a subject and see the tutors near you.</p></div>
         <div class="card"><div class="num">2</div><h3 data-i18n="how2t">Message them</h3><p data-i18n="how2">Chat in the app and propose a time to meet.</p></div>
         <div class="card"><div class="num">3</div><h3 data-i18n="how3t">Meet &amp; learn</h3><p data-i18n="how3">Meet somewhere public, learn something new, leave a review.</p></div>
       </div>
@@ -136,7 +136,7 @@
     <section>
       <h2 data-i18n="whyTitle">Why people love it</h2>
       <div class="grid">
-        <div class="card"><div class="emoji">🔁</div><h3 data-i18n="f1t">Swap, don't pay</h3><p data-i18n="f1">Trade a skill you have for one you want. Or teach for free, or set your own rate.</p></div>
+        <div class="card"><div class="emoji">🎓</div><h3 data-i18n="f1t">Tutors for anything</h3><p data-i18n="f1">Languages, instruments, coding, exam prep, cooking. Agree the rate with your tutor, or swap a skill instead.</p></div>
         <div class="card"><div class="emoji">🗺️</div><h3 data-i18n="f2t">Right around the corner</h3><p data-i18n="f2">Find people a few minutes away, or learn online from anywhere.</p></div>
         <div class="card"><div class="emoji">🔥</div><h3 data-i18n="f3t">Fun to keep going</h3><p data-i18n="f3">Weekly streaks, badges and celebrations make real-world learning stick.</p></div>
         <div class="card"><div class="emoji">🛡️</div><h3 data-i18n="f4t">Safe by design</h3><p data-i18n="f4">Locations are always blurred, 18+ only, and you can report or block in one tap.</p></div>
@@ -163,15 +163,15 @@
     const SUPABASE_KEY = 'sb_publishable_ufnH4bPRypV4_tBXsbEylA_Y2xuxPEd';
 
     const zh = {
-      heroTitle: '同身邊嘅人教、學、交換技能',
-      heroSub: '喺地圖上搵導師、學生同技能交換。完全免費，即將登陸香港及倫敦。',
+      heroTitle: '搵你附近嘅導師',
+      heroSub: '喺地圖上睇到屋企、校園或公司附近嘅導師：語言、音樂、編程、考試等等。完全免費，即將登陸香港及倫敦。',
       pillTutors: '🎓 導師', pillLearners: '🙋 學生', pillSwaps: '🔁 交換',
       formTitle: '登記候補名單 🚀', email: '電郵', city: '城市', cityHK: '香港', cityLDN: '倫敦', cityOther: '其他地方',
       role: '我想…', roleBoth: '教同學', roleTeach: '教', roleLearn: '學',
       tester: '我有 Android 手機，可以喺上架前幫手測試',
       submit: '通知我', privacyNote: '我哋只會就 LetsLearn 上架電郵通知你，唔會亂發。只限 18 歲或以上。', privacyLink: '私隱政策', termsLink: '使用條款',
-      howTitle: '點運作', how1t: '打開地圖', how1: '睇吓附近邊個想教、想學或交換技能。', how2t: '傳訊息', how2: '喺 App 入面傾，提議見面時間。', how3t: '見面學習', how3: '喺公眾地方見面，學新嘢，完咗留評價。',
-      whyTitle: '點解大家鍾意', f1t: '交換，唔使俾錢', f1: '用你識嘅技能換你想學嘅。或者免費教，或者自訂收費。', f2t: '就喺你附近', f2: '搵幾分鐘路程外嘅人，或者網上隨時學。', f3t: '越學越有動力', f3: '每週連續紀錄、徽章同慶祝動畫，令學習更持久。', f4t: '安全設計', f4: '位置永遠模糊處理、只限 18 歲或以上，一按就可以檢舉或封鎖。',
+      howTitle: '點運作', how1t: '打開地圖', how1: '揀科目，睇吓附近有咩導師。', how2t: '傳訊息', how2: '喺 App 入面傾，提議見面時間。', how3t: '見面學習', how3: '喺公眾地方見面，學新嘢，完咗留評價。',
+      whyTitle: '點解大家鍾意', f1t: '乜都有導師', f1: '語言、樂器、編程、考試、烹飪。收費同導師直接傾，或者用技能交換。', f2t: '就喺你附近', f2: '搵幾分鐘路程外嘅人，或者網上隨時學。', f3t: '越學越有動力', f3: '每週連續紀錄、徽章同慶祝動畫，令學習更持久。', f4t: '安全設計', f4: '位置永遠模糊處理、只限 18 歲或以上，一按就可以檢舉或封鎖。',
       faqTitle: '常見問題', q1: '真係免費？', a1: '係。LetsLearn 免費使用。導師可以選擇交換、免費教，或者同你直接傾收費。', q2: '幾時上架？', a2: '好快喺 Android（Google Play）推出，iPhone 版隨後。登記候補名單，上架當日會電郵通知你。', q3: '邊度可以用？', a3: '率先喺香港及倫敦推出。網上課堂任何地方都用得。', q4: '會唔會公開我嘅位置？', a4: '永遠唔會顯示準確位置。刊登嘅位置會隨機偏移 300–800 米，手機位置只會留喺你部手機。',
       ok: '🎉 你已加入候補名單！上架時會通知你。', dup: '👍 你已經喺候補名單入面喇！', bad: '請輸入有效嘅電郵地址。', fail: '出咗少少問題，請再試一次。'
     };
